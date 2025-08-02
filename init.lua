@@ -248,7 +248,7 @@ rtp:prepend(lazypath)
 require('lazy').setup({
 
   { 'chaoren/vim-wordmotion' },
-
+  { 'github/copilot.vim' },
   {
     'stevearc/oil.nvim',
     ---@module 'oil'
@@ -1108,3 +1108,6 @@ require('lspconfig').dartls.setup {
     },
   },
 }
+
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
