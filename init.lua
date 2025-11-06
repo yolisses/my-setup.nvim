@@ -295,9 +295,22 @@ require('lazy').setup({
     },
   },
 
+  {
+    'kylechui/nvim-surround',
+    version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+
+  -- 'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
   'justinmk/vim-sneak',
+  'tpope/vim-abolish',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -728,6 +741,7 @@ require('lazy').setup({
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         phpactor = {},
+        jsonls = {},
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
@@ -1091,23 +1105,5 @@ vim.api.nvim_create_autocmd('FocusLost', {
   end,
 })
 
-require('lspconfig').dartls.setup {
-  cmd = { 'dart', 'language-server', '--protocol=lsp' },
-  filetypes = { 'dart' },
-  init_options = {
-    closingLabels = true,
-    flutterOutline = true,
-    onlyAnalyzeProjectsWithOpenFiles = true,
-    outline = true,
-    suggestFromUnimportedLibraries = true,
-  },
-  settings = {
-    dart = {
-      completeFunctionCalls = true,
-      showTodos = true,
-    },
-  },
-}
-
-vim.opt.spelllang = 'en_us'
-vim.opt.spell = true
+vim.keymap.set('n', '<leader>;', 'm`A;<esc>``', { noremap = true, desc = 'Add [;] to the end of line' })
+vim.keymap.set('v', '<leader>sl', ':sort<CR>', { noremap = true, desc = '[S]ort [L]ines' })
