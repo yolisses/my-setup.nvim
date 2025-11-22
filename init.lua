@@ -413,6 +413,7 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+        hidden = true,
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -683,6 +684,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        prismals = {},
 
         lua_ls = {
           -- cmd = { ... },
@@ -777,6 +779,7 @@ require('lazy').setup({
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
+        prisma = { 'prettier' },
       },
     },
   },
