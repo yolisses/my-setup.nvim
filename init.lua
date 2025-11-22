@@ -246,6 +246,11 @@ rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+
+  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  'justinmk/vim-sneak',
+  'tpope/vim-abolish',
 
   { 'chaoren/vim-wordmotion' },
   { 'github/copilot.vim' },
@@ -260,7 +265,11 @@ require('lazy').setup({
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
   },
-
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
   {
     'scottmckendry/cyberdream.nvim',
     lazy = false,
@@ -276,25 +285,6 @@ require('lazy').setup({
     end,
   },
 
-  -- lazy.nvim:
-  {
-    'smoka7/multicursors.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      'nvimtools/hydra.nvim',
-    },
-    opts = {},
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-    keys = {
-      {
-        mode = { 'v', 'n' },
-        '<Leader>m',
-        '<cmd>MCstart<cr>',
-        desc = 'Create a selection for selected text or word under the cursor',
-      },
-    },
-  },
-
   {
     'kylechui/nvim-surround',
     version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
@@ -306,11 +296,11 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-
-  -- 'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-  'justinmk/vim-sneak',
-  'tpope/vim-abolish',
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -834,6 +824,18 @@ require('lazy').setup({
         lua = { 'stylua' },
         php = { 'phpcbf' },
         sql = { 'sql_formatter' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        css = { 'prettier' },
+        scss = { 'prettier' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        jsonc = { 'prettier' },
+        yaml = { 'prettier' },
+        markdown = { 'prettier' },
+        graphql = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -1020,7 +1022,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = false, disable = { 'ruby' } },
+      indent = { enable = false, disable = { 'ruby', 'typescript', 'javascript' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
