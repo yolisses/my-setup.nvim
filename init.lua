@@ -785,7 +785,6 @@ require('lazy').setup({
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
-        prisma = { 'prettier' },
       },
     },
   },
