@@ -712,7 +712,7 @@ do
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
-    -- rust_analyzer = {},
+    rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
     --    https://github.com/pmizio/typescript-tools.nvim
@@ -797,30 +797,37 @@ do
   -- [[ Formatting ]]
   vim.pack.add { gh 'stevearc/conform.nvim' }
   require('conform').setup {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
-      -- You can specify filetypes to autoformat on save here:
-      local enabled_filetypes = {
-        -- lua = true,
-        -- python = true,
-      }
-      if enabled_filetypes[vim.bo[bufnr].filetype] then
-        return { timeout_ms = 500 }
-      else
-        return nil
-      end
+      return { timeout_ms = 500 }
+      -- -- You can specify filetypes to autoformat on save here:
+      -- local enabled_filetypes = {
+      --   -- lua = true,
+      --   -- python = true,
+      -- }
+      -- if enabled_filetypes[vim.bo[bufnr].filetype] then
+      --   return { timeout_ms = 500 }
+      -- else
+      --   return nil
+      -- end
     end,
     default_format_opts = {
       lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
-      -- rust = { 'rustfmt' },
+      rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { 'prettierd' },
+      svelte = { 'prettierd' },
+      typescript = { 'prettierd' },
+      html = { 'prettierd' },
+      css = { 'prettierd' },
+      markdown = { 'prettierd' },
     },
   }
 
@@ -1045,6 +1052,7 @@ vim.api.nvim_create_autocmd('FocusLost', {
   pattern = '*',
   callback = function()
     if vim.bo.modified and vim.bo.buftype == '' then
+      vim.api.nvim_exec_autocmds('BufWritePre', { buffer = 0 })
       vim.cmd 'silent! write'
     end
   end,
@@ -1052,3 +1060,6 @@ vim.api.nvim_create_autocmd('FocusLost', {
 
 vim.keymap.set('n', '<leader>;', 'm`A;<esc>``', { noremap = true, desc = 'Add [;] to the end of line' })
 vim.keymap.set('v', '<leader>sl', ':sort<CR>', { noremap = true, desc = '[S]ort [L]ines' })
+
+-- Save all buffers with Ctrl+S
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<Cmd>wa<CR>', { desc = 'Save all buffers' })
