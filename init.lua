@@ -722,6 +722,10 @@ do
 
     stylua = {}, -- Used to format Lua code
 
+    svelte = {},
+    tailwindcss = {},
+    ts_ls = {},
+
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
       on_init = function(client)
