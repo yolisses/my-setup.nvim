@@ -838,6 +838,7 @@ do
       html = { 'prettierd' },
       css = { 'prettierd' },
       markdown = { 'prettierd' },
+      json = { 'prettierd' },
     },
   }
 
