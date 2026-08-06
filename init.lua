@@ -158,7 +158,12 @@ do
   --   See `:help lua-options`
   --   and `:help lua-guide-options`
   vim.o.list = true
-  vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  vim.opt.listchars = {
+    -- tab = '» ',
+    tab = '  ',
+    trail = '·',
+    nbsp = '␣',
+  }
 
   -- Preview substitutions live, as you type!
   vim.o.inccommand = 'split'
