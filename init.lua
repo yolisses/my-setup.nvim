@@ -414,7 +414,9 @@ do
   vim.pack.add {
     { src = 'https://github.com/bluz71/vim-moonfly-colors', name = 'moonfly' },
   }
-
+  require('moonfly').custom_colors {
+    bg = '#000000',
+  }
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
