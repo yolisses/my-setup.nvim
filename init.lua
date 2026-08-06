@@ -1016,7 +1016,7 @@ do
   -- require 'kickstart.plugins.debug'
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
-  require 'kickstart.plugins.autopairs'
+  -- require 'kickstart.plugins.autopairs'
   require 'kickstart.plugins.neo-tree'
   require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
@@ -1029,17 +1029,9 @@ end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
--- Delete yanking
-vim.keymap.set('n', '<BS>d', 'd', { noremap = true })
-vim.keymap.set('v', '<BS>d', 'd', { noremap = true })
-vim.keymap.set('n', '<BS>x', 'x', { noremap = true })
--- Delete not yanking
-vim.keymap.set('n', 'd', '"_d', { noremap = true })
-vim.keymap.set('v', 'd', '"_d', { noremap = true })
-vim.keymap.set('n', 'D', '"_D', { noremap = true })
-vim.keymap.set('v', 'D', '"_D', { noremap = true })
-vim.keymap.set('n', 'x', '"_x', { noremap = true })
-vim.keymap.set('v', 'x', '"_x', { noremap = true })
+-- Stop pasting the very thing I decided to remove
+vim.keymap.set('n', 'p', '"0p', { noremap = true })
+vim.keymap.set('n', 'P', '"0P', { noremap = true })
 
 vim.pack.add {
   {
@@ -1055,6 +1047,12 @@ vim.pack.add {
   },
 }
 require('oil').setup {}
+
+vim.pack.add {
+  { src = gh 'm4xshen/autoclose.nvim' },
+}
+
+require('autoclose').setup()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
@@ -1073,4 +1071,7 @@ vim.keymap.set('n', '<leader>;', 'm`A;<esc>``', { noremap = true, desc = 'Add [;
 vim.keymap.set('v', '<leader>sl', ':sort<CR>', { noremap = true, desc = '[S]ort [L]ines' })
 
 -- Save all buffers with Ctrl+S
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<Cmd>wa<CR>', { desc = 'Save all buffers' })
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<Cmd>wa<CR>', { desc = 'Save all buffers' })
+
+-- Save all buffers with Ctrl+S, then return to normal mode
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<Cmd>wa<CR><Esc>', { desc = 'Save all buffers and return to normal mode' })
