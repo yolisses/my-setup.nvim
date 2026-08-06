@@ -265,7 +265,7 @@ do
   --  https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack
   --
   --  To inspect plugin state and pending updates, run
-  --    :lua vim.pack.update(nil, { offline = true })
+  --    :lua vim.pack.update('gemma4', { offline = true })
   --
   --  To update plugins, run
   --    :lua vim.pack.update()

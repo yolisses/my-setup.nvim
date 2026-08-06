@@ -71,6 +71,10 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "taal.nvim": {
+      "rev": "99f243cedadad4c9e2dbb1e76afefa69cf0f94d5",
+      "src": "https://codeberg.org/BennoRichters/taal.nvim"
+    },
     "telescope-fzf-native.nvim": {
       "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
